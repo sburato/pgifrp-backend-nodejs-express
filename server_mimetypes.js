@@ -15,13 +15,9 @@ const mimeTypes = {
   map : 'text/plain', 
 };
 
-router.get('/index.html', (request, response) => {  
-  processarRequest(request, response);
-});
+router.get('/*.html', (request, response) => processarRequest(request, response));
 
-router.get('/public/*', (request, response) => {  
-  processarRequest(request, response);
-}); 
+router.get('/public/*', (request, response) => processarRequest(request, response));
 
 function processarRequest(request, response) {
   let caminho_completo_recurso = path.join(process.cwd(), decodeURI(request.url));
@@ -44,7 +40,7 @@ function processarRequest(request, response) {
     let fluxo_arquivo = fs.createReadStream(caminho_completo_recurso);
     fluxo_arquivo.pipe(response);
   } else if (recurso_carregado.isDirectory()) {
-    response.writeHead(302, {'Location': 'index.html'});
+    response.writeHead(302, {'Location': '../index.html'});
     response.end();
   } else {
     response.writeHead(500, { 'Content-Type': 'text/plain' });

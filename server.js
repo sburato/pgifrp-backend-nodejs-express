@@ -24,10 +24,10 @@ app.get('/ab[0-9]cd', (request, response) => {
   response.send("<h1>Expressão Regular<h1>");  
 });
 
-app.use('/', parametros);
+app.use(parametros);
 
-app.post('/test_post', (request, response) => {
-  response.send("Você acessou uma página via método HTTP POST.");
+app.post('/usuario', (request, response) => {
+  response.status(201).json( { mensagem:  "Usuário criado com sucesso." } );
 });
 
 app.get('*', (request, response) => {
