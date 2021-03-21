@@ -16,14 +16,14 @@ const mimeTypes = {
 };
 
 router.get('/index.html', (request, response) => {  
-  executar(request, response);
+  processarRequest(request, response);
 });
 
 router.get('/public/*', (request, response) => {  
-  executar(request, response);
+  processarRequest(request, response);
 }); 
 
-function executar(request, response) {
+function processarRequest(request, response) {
   let caminho_completo_recurso = path.join(process.cwd(), decodeURI(request.url));
   console.log(caminho_completo_recurso);
   
